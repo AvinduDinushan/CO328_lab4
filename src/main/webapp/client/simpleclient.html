@@ -82,7 +82,9 @@ and open the template in the editor.
                 });
                 document.getElementById("result").innerHTML="delete data";
             }
-                        
+            /* TODO:
+             * Function putData needed to be completed with good implementation
+             */
             function putData()
             {
                 var requestData = { "student":{
@@ -95,8 +97,10 @@ and open the template in the editor.
                 $.ajax({
                     url: '../rest/student/' + $("#id_field").val(),
                     type: 'PUT',
-                    success: function(response) {
-                        document.getElementById("result").innerHTML= JSON.stringify(object);
+                    data: JSON.stringify(requestData),
+                    contentType:'application/json; charset=UTF-8',
+                    success: function(response,status) {
+                        document.getElementById("result").innerHTML= status;
                     },
                     error: function(xhr, status, text) {
                         document.getElementById("result").innerHTML=text;
